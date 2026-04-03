@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaram Hotel — Umbergaon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --terracotta: #C0603A;
+    --terracotta-dark: #8B3E22;
+    --sand: #F5ECD7;
+    --cream: #FBF6EE;
+    --brown: #3D2414;
+    --warm-gray: #8C7B6B;
+    --gold: #C49A3C;
+    --leaf: #4A6741;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(251,246,238,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(192,96,58,0.15);
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--terracotta);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--brown);
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-cta {
+    background: var(--terracotta);
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--terracotta-dark); color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1.5px;
+    background: var(--terracotta);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.12;
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--warm-gray);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: var(--brown);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--terracotta); }
+
+  .btn-secondary::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+
+  .btn-secondary:hover::after { transform: translateX(4px); }
+
+  .hero-visual {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-container {
+    width: 100%;
+    height: 100%;
+    background: var(--sand);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-illustration {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  /* Decorative pattern overlay */
+  .hero-pattern {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 60%;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--brown) 0,
+      var(--brown) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 14px 14px;
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    background: var(--cream);
+    border: 1px solid rgba(192,96,58,0.2);
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .hero-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+
+  .hero-badge-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-top: 0.25rem;
+  }
+
+  .hero-decor-line {
+    position: absolute;
+    top: 0; left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--terracotta);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--brown);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stat-item {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.4rem;
+  }
+
+  /* SECTION COMMONS */
+  section {
+    padding: 6rem 5rem;
+  }
+
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--brown);
+    line-height: 1.2;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--sand);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-main {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--terracotta);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-img-accent {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 55%;
+    aspect-ratio: 1;
+    background: var(--leaf);
+    border-radius: 2px;
+    border: 6px solid var(--sand);
+  }
+
+  .about-img-tag {
+    position: absolute;
+    top: 1.5rem;
+    left: -1.5rem;
+    background: var(--gold);
+    color: var(--brown);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .about-text .section-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #5C4A3A;
+    margin-bottom: 2rem;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .feature-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .feature-text {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--brown);
+    letter-spacing: 0.02em;
+  }
+
+  /* ROOMS */
+  .rooms {
+    background: var(--cream);
+  }
+
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .room-card {
+    border: 1px solid rgba(61,36,20,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .room-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(61,36,20,0.12);
+  }
+
+  .room-img {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .room-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--gold);
+    color: var(--brown);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  .room-info {
+    padding: 1.5rem;
+    background: #fff;
+  }
+
+  .room-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--brown);
+    margin-bottom: 0.5rem;
+  }
+
+  .room-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--warm-gray);
+    margin-bottom: 1.25rem;
+  }
+
+  .room-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid rgba(61,36,20,0.1);
+    padding-top: 1rem;
+  }
+
+  .price-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--terracotta);
+  }
+
+  .price-label {
+    font-size: 0.75rem;
+    color: var(--warm-gray);
+  }
+
+  .price-action {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .price-action:hover { color: var(--terracotta-dark); }
+
+  /* RESTAURANT */
+  .restaurant {
+    background: var(--brown);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .restaurant::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.015) 0,
+      rgba(255,255,255,0.015) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 20px 20px;
+  }
+
+  .restaurant-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .restaurant .section-title {
+    color: var(--sand);
+  }
+
+  .restaurant .section-eyebrow {
+    color: var(--gold);
+  }
+
+  .restaurant-body {
+    color: rgba(245,236,215,0.75);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+
+  .menu-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .menu-item {
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+  }
+
+  .menu-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--sand);
+    margin-bottom: 0.25rem;
+  }
+
+  .menu-item-type {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .restaurant-visual {
+    position: relative;
+  }
+
+  .resto-img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.75rem;
+    aspect-ratio: 1;
+  }
+
+  .resto-img {
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .resto-img:first-child {
+    grid-row: span 2;
+  }
+
+  /* FACILITIES */
+  .facilities {
+    background: var(--sand);
+  }
+
+  .facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .facility-card {
+    padding: 2rem 1.5rem;
+    background: var(--cream);
+    border-radius: 2px;
+    border: 1px solid rgba(61,36,20,0.08);
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .facility-card:hover {
+    border-color: var(--terracotta);
+    transform: translateY(-4px);
+  }
+
+  .facility-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    background: rgba(192,96,58,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .facility-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--terracotta);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .facility-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--brown);
+    margin-bottom: 0.4rem;
+  }
+
+  .facility-desc {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    line-height: 1.5;
+  }
+
+  /* LOCATION */
+  .location {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .location-info .section-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .location-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #5C4A3A;
+    margin-bottom: 2rem;
+  }
+
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(192,96,58,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--terracotta);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .contact-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-weight: 700;
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--brown);
+    margin-top: 0.15rem;
+    line-height: 1.5;
+  }
+
+  .map-placeholder {
+    background: var(--sand);
+    border-radius: 2px;
+    overflow: hidden;
+    height: 420px;
+    position: relative;
+    border: 1px solid rgba(61,36,20,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-overlay {
+    text-align: center;
+  }
+
+  .map-pin {
+    width: 48px;
+    height: 48px;
+    background: var(--terracotta);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    margin: 0 auto 1rem;
+    position: relative;
+  }
+
+  .map-pin::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: var(--cream);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .map-address {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--brown);
+    margin-bottom: 0.5rem;
+  }
+
+  .map-sub {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    margin-bottom: 1.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1E1008;
+    color: rgba(255,255,255,0.6);
+    padding: 4rem 5rem 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-brand .nav-logo {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-col h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-col ul li {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-col ul a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+
+  .footer-bottom a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* Decorative SVG elements */
+  .deco-motif {
+    position: absolute;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  /* Animated hero elements */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.7s ease both; }
+  .hero h1 { animation: fadeUp 0.7s ease 0.15s both; }
+  .hero-sub { animation: fadeUp 0.7s ease 0.3s both; }
+  .hero-actions { animation: fadeUp 0.7s ease 0.45s both; }
+
+  /* Scrolling rooms highlight */
+  .rooms-subtext {
+    font-size: 1rem;
+    color: var(--warm-gray);
+    max-width: 540px;
+    line-height: 1.75;
+    margin-top: 1rem;
+  }
+
+  /* Review strip */
+  .reviews {
+    background: var(--terracotta);
+    padding: 3rem 5rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    overflow: hidden;
+  }
+
+  .review-card {
+    flex-shrink: 0;
+    max-width: 360px;
+  }
+
+  .review-stars {
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-author {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .review-divider {
+    width: 1px;
+    height: 80px;
+    background: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+
+  .review-highlight {
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .rh-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .rh-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-top: 0.4rem;
+  }
+
+  /* Room illustration colors */
+  .room-single { background: linear-gradient(135deg, #D4956A 0%, #B5714A 100%); }
+  .room-double { background: linear-gradient(135deg, #4A6741 0%, #3A5232 100%); }
+  .room-deluxe { background: linear-gradient(135deg, #C49A3C 0%, #A07A28 100%); }
+
+  .room-illus {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .resto-single { background: linear-gradient(135deg, #8B3E22 0%, #C0603A 100%); }
+  .resto-double { background: linear-gradient(135deg, #3D2414 0%, #5C3A20 100%); }
+  .resto-triple { background: linear-gradient(135deg, #4A6741 0%, #3A5232 100%); }
+
+  .about-main-bg { background: linear-gradient(135deg, #C0603A 0%, #8B3E22 100%); }
+  .about-accent-bg { background: linear-gradient(135deg, #4A6741 0%, #2E4128 100%); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Aaram <span>Hotel</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#rooms">Rooms</a></li>
+    <li><a href="#restaurant">Restaurant</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+919081610706" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0; padding-top:72px;">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Umbergaon, Gujarat</p>
+    <h1>Where Every<br>Stay Feels Like<br><em>Home</em></h1>
+    <p class="hero-sub">A warm, welcoming retreat in the heart of Umbergaon — built for families, travellers, and business guests seeking genuine comfort and homely hospitality.</p>
+    <div class="hero-actions">
+      <a href="tel:+919081610706" class="btn-primary">Reserve a Room</a>
+      <a href="#restaurant" class="btn-secondary">Explore Menu</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-image-container">
+      <div class="hero-decor-line"></div>
+      <div class="hero-pattern"></div>
+      <!-- Illustrated building -->
+      <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+        <!-- Background wash -->
+        <rect width="480" height="520" fill="#F5ECD7"/>
+        <!-- Ground -->
+        <rect x="0" y="400" width="480" height="120" fill="#E8D9BC"/>
+        <!-- Building body -->
+        <rect x="80" y="140" width="320" height="280" fill="#C0603A" rx="2"/>
+        <!-- Building darker base -->
+        <rect x="80" y="340" width="320" height="80" fill="#8B3E22" rx="0"/>
+        <!-- Roof -->
+        <polygon points="60,140 240,60 420,140" fill="#3D2414"/>
+        <!-- Roof accent stripe -->
+        <rect x="80" y="135" width="320" height="8" fill="#C49A3C"/>
+        <!-- Windows row 1 -->
+        <rect x="120" y="180" width="60" height="60" fill="#F5ECD7" rx="2"/>
+        <rect x="210" y="180" width="60" height="60" fill="#F5ECD7" rx="2"/>
+        <rect x="300" y="180" width="60" height="60" fill="#F5ECD7" rx="2"/>
+        <!-- Windows row 1 frames -->
+        <rect x="120" y="180" width="60" height="60" fill="none" stroke="#8B3E22" stroke-width="3" rx="2"/>
+        <rect x="210" y="180" width="60" height="60" fill="none" stroke="#8B3E22" stroke-width="3" rx="2"/>
+        <rect x="300" y="180" width="60" height="60" fill="none" stroke="#8B3E22" stroke-width="3" rx="2"/>
+        <!-- Windows - sill lines -->
+        <line x1="120" y1="210" x2="180" y2="210" stroke="#8B3E22" stroke-width="2"/>
+        <line x1="210" y1="210" x2="270" y2="210" stroke="#8B3E22" stroke-width="2"/>
+        <line x1="300" y1="210" x2="360" y2="210" stroke="#8B3E22" stroke-width="2"/>
+        <!-- Window pane cross -->
+        <line x1="150" y1="180" x2="150" y2="240" stroke="#8B3E22" stroke-width="1.5"/>
+        <line x1="240" y1="180" x2="240" y2="240" stroke="#8B3E22" stroke-width="1.5"/>
+        <line x1="330" y1="180" x2="330" y2="240" stroke="#8B3E22" stroke-width="1.5"/>
+        <!-- Windows row 2 -->
+        <rect x="120" y="270" width="60" height="55" fill="#FAE8C8" rx="2"/>
+        <rect x="210" y="270" width="60" height="55" fill="#FAE8C8" rx="2"/>
+        <rect x="300" y="270" width="60" height="55" fill="#FAE8C8" rx="2"/>
+        <rect x="120" y="270" width="60" height="55" fill="none" stroke="#8B3E22" stroke-width="2.5" rx="2"/>
+        <rect x="210" y="270" width="60" height="55" fill="none" stroke="#8B3E22" stroke-width="2.5" rx="2"/>
+        <rect x="300" y="270" width="60" height="55" fill="none" stroke="#8B3E22" stroke-width="2.5" rx="2"/>
+        <!-- Door arch -->
+        <rect x="190" y="340" width="100" height="80" fill="#F5ECD7" rx="50 50 0 0"/>
+        <rect x="190" y="360" width="100" height="60" fill="#F5ECD7"/>
+        <rect x="190" y="340" width="100" height="80" fill="none" stroke="#3D2414" stroke-width="3" rx="50 50 0 0"/>
+        <!-- Door center line -->
+        <line x1="240" y1="360" x2="240" y2="420" stroke="#3D2414" stroke-width="2"/>
+        <!-- Door knobs -->
+        <circle cx="222" cy="390" r="4" fill="#C49A3C"/>
+        <circle cx="258" cy="390" r="4" fill="#C49A3C"/>
+        <!-- Sign board above door -->
+        <rect x="175" y="320" width="130" height="24" fill="#C49A3C" rx="2"/>
+        <text x="240" y="337" font-family="'Playfair Display', serif" font-size="11" fill="#3D2414" text-anchor="middle" font-weight="600">HOTEL AARAM</text>
+        <!-- Decorative border on building -->
+        <rect x="80" y="140" width="320" height="8" fill="#C49A3C"/>
+        <!-- Steps -->
+        <rect x="160" y="418" width="160" height="10" fill="#D4C4A8" rx="1"/>
+        <rect x="175" y="428" width="130" height="10" fill="#C8B898" rx="1"/>
+        <!-- Potted plants at sides -->
+        <rect x="100" y="380" width="28" height="22" fill="#4A6741" rx="1"/>
+        <rect x="96" y="400" width="36" height="10" fill="#3D2414" rx="1"/>
+        <ellipse cx="114" cy="372" rx="16" ry="18" fill="#5A7A51"/>
+        <ellipse cx="107" cy="365" rx="8" ry="10" fill="#4A6741"/>
+        <rect x="352" y="380" width="28" height="22" fill="#4A6741" rx="1"/>
+        <rect x="348" y="400" width="36" height="10" fill="#3D2414" rx="1"/>
+        <ellipse cx="366" cy="372" rx="16" ry="18" fill="#5A7A51"/>
+        <ellipse cx="373" cy="365" rx="8" ry="10" fill="#4A6741"/>
+        <!-- Trees -->
+        <rect x="28" y="310" width="14" height="90" fill="#5C3A20"/>
+        <ellipse cx="35" cy="295" rx="35" ry="40" fill="#4A6741"/>
+        <ellipse cx="25" cy="270" rx="22" ry="26" fill="#5A7A51"/>
+        <rect x="430" y="310" width="14" height="90" fill="#5C3A20"/>
+        <ellipse cx="437" cy="295" rx="35" ry="40" fill="#3A5232"/>
+        <ellipse cx="447" cy="272" rx="22" ry="26" fill="#4A6741"/>
+        <!-- Road/Path -->
+        <rect x="190" y="438" width="100" height="82" fill="#D4C4A8"/>
+        <!-- Lamp post -->
+        <rect x="56" y="360" width="4" height="80" fill="#8B7355"/>
+        <rect x="46" y="355" width="24" height="8" fill="#C49A3C" rx="2"/>
+        <!-- Stars / dots in sky area -->
+        <circle cx="80" cy="50" r="2" fill="#C49A3C" opacity="0.5"/>
+        <circle cx="180" cy="30" r="1.5" fill="#C49A3C" opacity="0.4"/>
+        <circle cx="340" cy="40" r="2" fill="#C49A3C" opacity="0.5"/>
+        <circle cx="420" cy="80" r="1.5" fill="#C49A3C" opacity="0.3"/>
+        <circle cx="130" cy="80" r="1.5" fill="#C49A3C" opacity="0.3"/>
+      </svg>
+      <div class="hero-badge">
+        <div class="hero-badge-num">3.9★</div>
+        <div class="hero-badge-text">Rated on Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">Room Service</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">AC</div>
+    <div class="stat-label">All Rooms</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">₹800+</div>
+    <div class="stat-label">Starting Rate</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5km</div>
+    <div class="stat-label">From Dehri Beach</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-img-main about-main-bg">
+      <svg viewBox="0 0 300 375" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="375" fill="#C0603A"/>
+        <!-- Interior room illustration -->
+        <rect x="0" y="0" width="300" height="375" fill="#8B3E22" opacity="0.3"/>
+        <!-- Bed -->
+        <rect x="40" y="200" width="220" height="120" fill="#F5ECD7" rx="4"/>
+        <rect x="40" y="200" width="220" height="35" fill="#C49A3C" rx="4"/>
+        <rect x="55" y="205" width="70" height="60" fill="#fff" rx="3"/>
+        <rect x="175" y="205" width="70" height="60" fill="#fff" rx="3"/>
+        <!-- Headboard -->
+        <rect x="30" y="170" width="240" height="40" fill="#3D2414" rx="4"/>
+        <!-- Bedside lamp -->
+        <rect x="10" y="245" width="30" height="5" fill="#C49A3C" rx="2"/>
+        <rect x="22" y="250" width="6" height="25" fill="#8B7355"/>
+        <polygon points="13,270 37,270 30,245 20,245" fill="#F5ECD7" opacity="0.7"/>
+        <!-- Window -->
+        <rect x="100" y="40" width="100" height="100" fill="#FAE8C8" rx="3"/>
+        <rect x="100" y="40" width="100" height="100" fill="none" stroke="#3D2414" stroke-width="3" rx="3"/>
+        <line x1="150" y1="40" x2="150" y2="140" stroke="#3D2414" stroke-width="2"/>
+        <line x1="100" y1="90" x2="200" y2="90" stroke="#3D2414" stroke-width="2"/>
+        <!-- Curtains -->
+        <rect x="88" y="35" width="18" height="110" fill="#C49A3C" opacity="0.8" rx="2"/>
+        <rect x="194" y="35" width="18" height="110" fill="#C49A3C" opacity="0.8" rx="2"/>
+        <!-- Floor -->
+        <rect x="0" y="330" width="300" height="45" fill="#D4A574" opacity="0.6"/>
+        <!-- Lamp post/table lamp -->
+        <rect x="240" y="260" width="8" height="60" fill="#8B7355"/>
+        <rect x="228" y="255" width="32" height="10" fill="#C49A3C" rx="2"/>
+        <polygon points="228,255 260,255 252,230 236,230" fill="#FAE8C8" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="about-img-accent about-accent-bg">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="200" height="200" fill="#4A6741"/>
+        <!-- Food thali -->
+        <circle cx="100" cy="100" r="75" fill="#C49A3C" opacity="0.3"/>
+        <circle cx="100" cy="100" r="70" fill="#F5ECD7" opacity="0.15" stroke="#C49A3C" stroke-width="2"/>
+        <!-- Small bowls -->
+        <circle cx="100" cy="50" r="20" fill="#C0603A" opacity="0.7"/>
+        <circle cx="145" cy="75" r="18" fill="#8B3E22" opacity="0.7"/>
+        <circle cx="150" cy="125" r="18" fill="#C49A3C" opacity="0.7"/>
+        <circle cx="100" cy="148" r="20" fill="#4A6741" opacity="0.7"/>
+        <circle cx="52" cy="125" r="18" fill="#C0603A" opacity="0.5"/>
+        <circle cx="55" cy="75" r="18" fill="#C49A3C" opacity="0.5"/>
+        <!-- Center rice -->
+        <circle cx="100" cy="100" r="28" fill="#F5ECD7" opacity="0.4"/>
+        <text x="100" y="105" font-family="'Playfair Display', serif" font-size="10" fill="#fff" text-anchor="middle" opacity="0.8">Thali</text>
+      </svg>
+    </div>
+    <div class="about-img-tag">Est. 2017</div>
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title">A Homely Stay in<br>the <em>Heart</em> of Umbergaon</h2>
+    <p class="about-body">
+      Hotel Aaram was born from a simple belief — that every traveller deserves a space that feels warm, clean, and genuinely welcoming. Nestled on Station Road in Umbergaon's GIDC area, we've been the trusted choice for business travellers, families, and visitors exploring Gujarat's coastal belt.
+    </p>
+    <p class="about-body">
+      "Aaram" means rest — and that is exactly what we promise. From our homely restaurant to our comfortable, air-conditioned rooms, everything here is designed around your peace of mind.
+    </p>
+    <div class="about-features">
+      <div class="about-feature"><div class="feature-dot"></div><div class="feature-text">Homely Restaurant</div></div>
+      <div class="about-feature"><div class="feature-dot"></div><div class="feature-text">Walk from Station</div></div>
+      <div class="about-feature"><div class="feature-dot"></div><div class="feature-text">Free Parking</div></div>
+      <div class="about-feature"><div class="feature-dot"></div><div class="feature-text">Cash & Card Accepted</div></div>
+      <div class="about-feature"><div class="feature-dot"></div><div class="feature-text">CCTV Security</div></div>
+      <div class="about-feature"><div class="feature-dot"></div><div class="feature-text">Power Backup</div></div>
+    </div>
+    <a href="#contact" class="btn-primary">Get Directions</a>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms" id="rooms">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
+    <div>
+      <p class="section-eyebrow">Accommodation</p>
+      <h2 class="section-title">Our <em>Rooms</em></h2>
+      <p class="rooms-subtext">Every room is air-conditioned with attached bathrooms, hot & cold water, LED TV with HD channels, and 24-hour room service.</p>
+    </div>
+    <a href="tel:+919081610706" class="btn-secondary" style="flex-shrink:0;">Book Direct</a>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <div class="room-img room-single">
+        <div class="room-tag">Single</div>
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="320" height="240" fill="#D4956A"/>
+          <!-- Single bed room -->
+          <rect x="60" y="120" width="200" height="80" fill="#F5ECD7" rx="3"/>
+          <rect x="60" y="120" width="200" height="25" fill="#8B3E22" rx="3"/>
+          <rect x="75" y="125" width="60" height="45" fill="#fff" rx="2"/>
+          <!-- Headboard -->
+          <rect x="50" y="100" width="220" height="28" fill="#3D2414" rx="3"/>
+          <!-- Window -->
+          <rect x="120" y="30" width="80" height="65" fill="#FAE8C8" rx="2"/>
+          <rect x="120" y="30" width="80" height="65" fill="none" stroke="#3D2414" stroke-width="2" rx="2"/>
+          <line x1="160" y1="30" x2="160" y2="95" stroke="#3D2414" stroke-width="1.5"/>
+          <line x1="120" y1="62" x2="200" y2="62" stroke="#3D2414" stroke-width="1.5"/>
+          <rect x="108" y="26" width="14" height="72" fill="#C49A3C" opacity="0.8" rx="1"/>
+          <rect x="198" y="26" width="14" height="72" fill="#C49A3C" opacity="0.8" rx="1"/>
+          <!-- Floor pattern -->
+          <rect x="0" y="200" width="320" height="40" fill="#B5714A" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Single Room</div>
+        <p class="room-desc">Perfect for solo travellers & business visits. Cozy, clean, and equipped with everything you need for a comfortable stay.</p>
+        <div class="room-price">
+          <div>
+            <div class="price-num">₹800<span style="font-size:0.9rem;color:var(--warm-gray);font-family:Lato;font-weight:300">/night</span></div>
+            <div class="price-label">incl. taxes</div>
+          </div>
+          <a href="tel:+919081610706" class="price-action">Book →</a>
+        </div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-double">
+        <div class="room-tag" style="background:var(--terracotta);color:#fff;">Double</div>
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="320" height="240" fill="#4A6741"/>
+          <!-- Double bed room -->
+          <rect x="40" y="120" width="240" height="85" fill="#F5ECD7" rx="3"/>
+          <rect x="40" y="120" width="240" height="28" fill="#C0603A" rx="3"/>
+          <rect x="55" y="125" width="75" height="60" fill="#fff" rx="2"/>
+          <rect x="190" y="125" width="75" height="60" fill="#fff" rx="2"/>
+          <!-- Headboard -->
+          <rect x="30" y="98" width="260" height="30" fill="#2E4128" rx="3"/>
+          <!-- Window -->
+          <rect x="110" y="28" width="100" height="65" fill="#E8F5E2" rx="2"/>
+          <rect x="110" y="28" width="100" height="65" fill="none" stroke="#2E4128" stroke-width="2" rx="2"/>
+          <line x1="160" y1="28" x2="160" y2="93" stroke="#2E4128" stroke-width="1.5"/>
+          <line x1="110" y1="60" x2="210" y2="60" stroke="#2E4128" stroke-width="1.5"/>
+          <rect x="98" y="24" width="14" height="72" fill="#C49A3C" opacity="0.8" rx="1"/>
+          <rect x="208" y="24" width="14" height="72" fill="#C49A3C" opacity="0.8" rx="1"/>
+          <!-- Floor -->
+          <rect x="0" y="205" width="320" height="35" fill="#2E4128" opacity="0.5"/>
+          <!-- TV stand -->
+          <rect x="260" y="160" width="40" height="30" fill="#2E4128" rx="2"/>
+          <rect x="258" y="155" width="44" height="8" fill="#C49A3C" rx="1"/>
+        </svg>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Double Room</div>
+        <p class="room-desc">Ideal for couples and families. Spacious room with double bed, AC, HD television, and attached bathroom with hot & cold water.</p>
+        <div class="room-price">
+          <div>
+            <div class="price-num">₹1200<span style="font-size:0.9rem;color:var(--warm-gray);font-family:Lato;font-weight:300">/night</span></div>
+            <div class="price-label">incl. taxes</div>
+          </div>
+          <a href="tel:+919081610706" class="price-action">Book →</a>
+        </div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-deluxe">
+        <div class="room-tag" style="background:var(--brown);color:var(--gold);">Best Value</div>
+        <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="320" height="240" fill="#C49A3C"/>
+          <!-- Deluxe room -->
+          <rect x="35" y="115" width="250" height="90" fill="#F5ECD7" rx="3"/>
+          <rect x="35" y="115" width="250" height="30" fill="#3D2414" rx="3"/>
+          <rect x="50" y="120" width="80" height="65" fill="#fff" rx="2"/>
+          <rect x="190" y="120" width="80" height="65" fill="#fff" rx="2"/>
+          <!-- Headboard with design -->
+          <rect x="25" y="90" width="270" height="34" fill="#8B6820" rx="3"/>
+          <rect x="50" y="97" width="30" height="6" fill="#C49A3C" rx="1"/>
+          <rect x="240" y="97" width="30" height="6" fill="#C49A3C" rx="1"/>
+          <circle cx="160" cy="100" r="8" fill="#C49A3C"/>
+          <!-- Larger window -->
+          <rect x="80" y="22" width="160" height="62" fill="#FAEEDA" rx="2"/>
+          <rect x="80" y="22" width="160" height="62" fill="none" stroke="#3D2414" stroke-width="2" rx="2"/>
+          <line x1="160" y1="22" x2="160" y2="84" stroke="#3D2414" stroke-width="1.5"/>
+          <line x1="80" y1="53" x2="240" y2="53" stroke="#3D2414" stroke-width="1.5"/>
+          <rect x="68" y="17" width="14" height="70" fill="#C0603A" opacity="0.9" rx="1"/>
+          <rect x="238" y="17" width="14" height="70" fill="#C0603A" opacity="0.9" rx="1"/>
+          <!-- Gold floor -->
+          <rect x="0" y="205" width="320" height="35" fill="#A07A28" opacity="0.5"/>
+          <!-- Lamp both sides -->
+          <rect x="12" y="180" width="22" height="4" fill="#3D2414" rx="1"/>
+          <rect x="18" y="184" width="10" height="20" fill="#8B7355"/>
+          <polygon points="12,203 34,203 28,182 16,182" fill="#FAEEDA" opacity="0.7"/>
+          <rect x="286" y="180" width="22" height="4" fill="#3D2414" rx="1"/>
+          <rect x="292" y="184" width="10" height="20" fill="#8B7355"/>
+          <polygon points="286,203 308,203 302,182 290,182" fill="#FAEEDA" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Deluxe Room</div>
+        <p class="room-desc">Our most spacious offering — premium bedding, colourful accent walls, HD TV, laundry service, and priority room service.</p>
+        <div class="room-price">
+          <div>
+            <div class="price-num">₹1600<span style="font-size:0.9rem;color:var(--warm-gray);font-family:Lato;font-weight:300">/night</span></div>
+            <div class="price-label">incl. taxes</div>
+          </div>
+          <a href="tel:+919081610706" class="price-action">Book →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<div class="reviews">
+  <div class="review-card">
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">"The food was absolutely homely — tasted just like maa ke haath ka khana. The thali was fresh and generous."</p>
+    <div class="review-author">— Verified Guest, Google</div>
+  </div>
+  <div class="review-divider"></div>
+  <div class="review-card">
+    <div class="review-stars">★★★★☆</div>
+    <p class="review-text">"Good location, clean rooms, and the staff was helpful. Parking was easy and checkout was smooth."</p>
+    <div class="review-author">— Business Traveller, Justdial</div>
+  </div>
+  <div class="review-divider"></div>
+  <div class="review-highlight">
+    <div class="rh-num">1800+</div>
+    <div class="rh-label">Happy Reviews</div>
+  </div>
+  <div class="review-divider"></div>
+  <div class="review-highlight">
+    <div class="rh-num">3.9</div>
+    <div class="rh-label">Average Rating</div>
+  </div>
+</div>
+
+<!-- RESTAURANT -->
+<section class="restaurant" id="restaurant">
+  <div class="restaurant-inner">
+    <div>
+      <p class="section-eyebrow">In-House Dining</p>
+      <h2 class="section-title" style="margin-bottom:1.25rem;">Fresh Food,<br>Every Day —<br><em style="color:var(--gold)">Made with Love</em></h2>
+      <p class="restaurant-body">Our in-house restaurant serves freshly cooked meals made from quality ingredients. From hearty thalis and South Indian favourites to quick bites — every dish carries a homely touch that our guests keep coming back for.</p>
+      <div class="menu-highlights">
+        <div class="menu-item">
+          <div class="menu-item-name">Gujarati Thali</div>
+          <div class="menu-item-type">Vegetarian · Signature</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">South Indian</div>
+          <div class="menu-item-type">Idli, Dosa, Vada</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">North Indian</div>
+          <div class="menu-item-type">Dal, Roti, Sabzi</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Chinese</div>
+          <div class="menu-item-type">Noodles, Fried Rice</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="https://hotelaaram.com/restro-menu.pdf" class="btn-primary" target="_blank">Download Menu</a>
+        <a href="https://play.google.com/store/apps/details?id=com.elunicaa.aaramrestaurant" class="btn-secondary" style="color:rgba(245,236,215,0.8);" target="_blank">Order on App</a>
+      </div>
+    </div>
+    <div class="restaurant-visual">
+      <div class="resto-img-grid">
+        <div class="resto-img resto-single" style="display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg" style="width:80%;height:80%;">
+            <rect width="160" height="240" fill="none"/>
+            <!-- Thali plate -->
+            <circle cx="80" cy="130" r="70" fill="#C49A3C" opacity="0.3"/>
+            <circle cx="80" cy="130" r="65" fill="#F5ECD7" opacity="0.15" stroke="#C49A3C" stroke-width="2"/>
+            <circle cx="80" cy="80" r="18" fill="#C0603A" opacity="0.7"/>
+            <circle cx="120" cy="105" r="15" fill="#4A6741" opacity="0.7"/>
+            <circle cx="125" cy="150" r="15" fill="#8B3E22" opacity="0.7"/>
+            <circle cx="80" cy="173" r="18" fill="#C49A3C" opacity="0.7"/>
+            <circle cx="35" cy="150" r="15" fill="#C0603A" opacity="0.5"/>
+            <circle cx="40" cy="105" r="15" fill="#4A6741" opacity="0.5"/>
+            <circle cx="80" cy="128" r="24" fill="#F5ECD7" opacity="0.3"/>
+            <text x="80" y="133" font-size="9" fill="#fff" text-anchor="middle" font-family="serif" opacity="0.8">Rice</text>
+            <text x="80" y="56" font-size="8" fill="#fff" text-anchor="middle" opacity="0.8">Dal</text>
+            <text x="80" y="200" font-size="8" fill="#fff" text-anchor="middle" opacity="0.8">Roti</text>
+          </svg>
+        </div>
+        <div class="resto-img resto-double" style="display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width:80%;height:80%;">
+            <!-- Coffee/chai cup -->
+            <ellipse cx="70" cy="90" rx="35" ry="8" fill="#C0603A" opacity="0.4"/>
+            <rect x="38" y="45" width="64" height="48" fill="#C0603A" rx="4"/>
+            <rect x="38" y="45" width="64" height="48" fill="none" stroke="#8B3E22" stroke-width="2" rx="4"/>
+            <path d="M102 55 Q120 65 102 75" fill="none" stroke="#C0603A" stroke-width="3"/>
+            <!-- Steam -->
+            <path d="M55 40 Q58 30 55 20" fill="none" stroke="#FAE8C8" stroke-width="1.5" opacity="0.6"/>
+            <path d="M70 38 Q73 26 70 16" fill="none" stroke="#FAE8C8" stroke-width="1.5" opacity="0.6"/>
+            <path d="M85 40 Q88 30 85 20" fill="none" stroke="#FAE8C8" stroke-width="1.5" opacity="0.6"/>
+            <ellipse cx="70" cy="55" rx="28" ry="6" fill="#8B3E22" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="resto-img resto-triple" style="display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width:80%;height:80%;">
+            <!-- Dosa -->
+            <ellipse cx="70" cy="75" rx="55" ry="25" fill="#C49A3C" rx="2"/>
+            <ellipse cx="70" cy="73" rx="50" ry="22" fill="#E8C56A" opacity="0.8"/>
+            <ellipse cx="70" cy="68" rx="25" ry="14" fill="#C0603A" opacity="0.6"/>
+            <!-- Sambar bowl -->
+            <ellipse cx="70" cy="35" rx="20" ry="6" fill="#8B3E22" opacity="0.7"/>
+            <rect x="52" y="30" width="36" height="20" fill="#8B3E22" opacity="0.5" rx="0 0 4 4"/>
+            <rect x="52" y="35" width="36" height="15" fill="#C0603A" opacity="0.4" rx="0 0 4 4"/>
+          </svg>
+        </div>
+      </div>
+      <!-- App badge -->
+      <div style="margin-top:1.5rem;padding:1rem 1.5rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;display:flex;align-items:center;gap:1rem;">
+        <div style="width:40px;height:40px;background:rgba(196,154,60,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">Food Delivery App</div>
+          <div style="font-size:0.88rem;color:var(--sand);margin-top:0.1rem;">Order from anywhere · +91 63559 38128</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities" id="facilities">
+  <div class="section-header" style="text-align:center;">
+    <p class="section-eyebrow">Amenities</p>
+    <h2 class="section-title">Every Comfort,<br><em>Taken Care Of</em></h2>
+  </div>
+  <div class="facilities-grid">
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      </div>
+      <div class="facility-name">Free Wi-Fi</div>
+      <p class="facility-desc">High-speed internet across all rooms and common areas</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><path d="M9.5 14.5L3 21"/><path d="M9 9a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/><path d="M12 3v1"/><path d="M12 20v1"/><path d="M4.22 4.22l.71.71"/><path d="M19.07 4.93l-.71.71"/></svg>
+      </div>
+      <div class="facility-name">AC Rooms</div>
+      <p class="facility-desc">All rooms fully air-conditioned with 24-hour power backup</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      </div>
+      <div class="facility-name">HD Television</div>
+      <p class="facility-desc">LED TVs with multi-channel HD satellite in all rooms</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="facility-name">24/7 Service</div>
+      <p class="facility-desc">Round-the-clock room service and front desk assistance</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
+      </div>
+      <div class="facility-name">Free Parking</div>
+      <p class="facility-desc">Ample private on-site parking for all guests</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="facility-name">CCTV Security</div>
+      <p class="facility-desc">Full premises covered by CCTV surveillance</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="facility-name">Hot & Cold Water</div>
+      <p class="facility-desc">All attached bathrooms with hot and cold water supply</p>
+    </div>
+    <div class="facility-card">
+      <div class="facility-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5m4 0h10m0-11v11m0 0H5m14 0v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+      </div>
+      <div class="facility-name">Laundry Service</div>
+      <p class="facility-desc">Convenient in-house laundry for all guests</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="location" id="contact">
+  <div class="location-info">
+    <p class="section-eyebrow">Find Us</p>
+    <h2 class="section-title">We're Right in<br>the <em>Heart</em> of Umbergaon</h2>
+    <p class="location-body">Conveniently located on Station Road in GIDC Colony, just a 9-minute walk from Umargam Road railway station and minutes from major industrial and business areas. Dehri Beach is only 5 km away.</p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value">Plot No. B-5, Near U.I.A. Hall, Station Rd (GIDC Colony Rd),<br>Umargam, Gujarat 396171</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Restaurant</div>
+          <div class="contact-value"><a href="tel:+919726723470" style="color:var(--terracotta);text-decoration:none;">+91 97267 23470</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Rooms Booking</div>
+          <div class="contact-value"><a href="tel:+919081610706" style="color:var(--terracotta);text-decoration:none;">+91 90816 10706</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e0e7fcede4e9e9fae9e5c8efe5e9e1e4a6ebe7e5">[email&#160;protected]</a></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="tel:+919081610706" class="btn-primary">Book a Room</a>
+      <a href="https://www.google.com/maps/dir//Aaram+Restaurant+and+aaram/@20.1563726,72.7147336" target="_blank" class="btn-secondary">Get Directions</a>
+    </div>
+  </div>
+  <div>
+    <div class="map-placeholder">
+      <svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;left:0;" opacity="0.4">
+        <!-- Map grid lines -->
+        <line x1="0" y1="60" x2="500" y2="60" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="0" y1="120" x2="500" y2="120" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="0" y1="180" x2="500" y2="180" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="0" y1="240" x2="500" y2="240" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="0" y1="300" x2="500" y2="300" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="0" y1="360" x2="500" y2="360" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="80" y1="0" x2="80" y2="420" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="160" y1="0" x2="160" y2="420" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="240" y1="0" x2="240" y2="420" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="320" y1="0" x2="320" y2="420" stroke="#8B7355" stroke-width="0.5"/>
+        <line x1="400" y1="0" x2="400" y2="420" stroke="#8B7355" stroke-width="0.5"/>
+        <!-- Roads -->
+        <rect x="0" y="190" width="500" height="18" fill="#D4C4A8" opacity="0.8"/>
+        <rect x="195" y="0" width="18" height="420" fill="#D4C4A8" opacity="0.8"/>
+        <rect x="0" y="310" width="500" height="14" fill="#C8B898" opacity="0.6"/>
+        <rect x="310" y="0" width="14" height="420" fill="#C8B898" opacity="0.6"/>
+        <!-- Blocks -->
+        <rect x="20" y="20" width="150" height="160" fill="#C8B898" opacity="0.4" rx="2"/>
+        <rect x="222" y="20" width="80" height="160" fill="#C8B898" opacity="0.4" rx="2"/>
+        <rect x="320" y="20" width="80" height="160" fill="#C8B898" opacity="0.3" rx="2"/>
+        <rect x="20" y="218" width="170" height="80" fill="#C8B898" opacity="0.4" rx="2"/>
+        <rect x="222" y="218" width="80" height="80" fill="#C8B898" opacity="0.3" rx="2"/>
+        <rect x="320" y="218" width="170" height="80" fill="#C8B898" opacity="0.4" rx="2"/>
+        <rect x="20" y="332" width="170" height="70" fill="#C8B898" opacity="0.3" rx="2"/>
+        <rect x="222" y="332" width="80" height="70" fill="#C8B898" opacity="0.4" rx="2"/>
+        <!-- Green area -->
+        <rect x="400" y="218" width="80" height="80" fill="#4A6741" opacity="0.3" rx="2"/>
+        <!-- Water hint -->
+        <rect x="0" y="370" width="500" height="50" fill="#4A88B5" opacity="0.15" rx="0 0 0 0"/>
+      </svg>
+      <div class="map-overlay" style="position:relative;z-index:1;">
+        <div class="map-pin"></div>
+        <div class="map-address">Hotel Aaram, Umbergaon</div>
+        <div class="map-sub">Plot No. B-5, GIDC Colony, Gujarat</div>
+        <a href="https://www.google.com/maps/dir//Aaram+Restaurant+and+aaram/@20.1563726,72.7147336" target="_blank" class="btn-primary" style="font-size:0.78rem;padding:0.65rem 1.25rem;">Open in Maps</a>
+      </div>
+    </div>
+    <!-- Check-in info -->
+    <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="padding:1.25rem;background:var(--sand);border-radius:2px;border:1px solid rgba(61,36,20,0.1);">
+        <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-gray);font-weight:700;margin-bottom:0.4rem;">Check-In</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--terracotta);">12:30 PM</div>
+      </div>
+      <div style="padding:1.25rem;background:var(--sand);border-radius:2px;border:1px solid rgba(61,36,20,0.1);">
+        <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-gray);font-weight:700;margin-bottom:0.4rem;">Check-Out</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--terracotta);">12:00 PM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">Aaram <span>Hotel</span></div>
+      <p class="footer-tagline">A warm, homely retreat in Umbergaon — where every guest is family, every meal is made with care, and every stay leaves you refreshed.</p>
+      <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Payment: Cash · Debit/Credit Card · Net Banking (NEFT)</div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#restaurant">Restaurant</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="https://hotelaaram.com/restro-menu.pdf" target="_blank">Download Menu</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919726723470">+91 97267 23470 (Restaurant)</a></li>
+        <li><a href="tel:+919081610706">+91 90816 10706 (Rooms)</a></li>
+        <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b53544f5e575a5a495a567b5c565a525715585456">[email&#160;protected]</a></li>
+        <li>GIDC Colony, Umargam,<br>Gujarat 396171</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 Hotel Aaram Restaurant & Rooms. All Rights Reserved.</div>
+    <div>Designed with ♥ for Umbergaon</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Smooth active nav on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.style.color = '#C0603A';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.room-card, .facility-card, .stat-item, .review-card');
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = entry.t
